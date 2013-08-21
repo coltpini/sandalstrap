@@ -1,0 +1,22 @@
+{
+  "name": "sandlestrap",
+  "version": "0.0.0",
+  "description": "collection of components based on x-tag and polymer",
+  "main": "index.html",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-stylus": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-contrib-copy": "~0.4.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coltpini/sandlestrap.git"
+  },
+  "author": "Colt Pini",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "81ca6e840ce4c12f7fdf0aedb16e52d89c992d3a"
+}
