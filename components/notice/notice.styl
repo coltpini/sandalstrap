@@ -1,0 +1,123 @@
+@import "../../styles/sandlestrapFW";
+
+banner-heading = rgb(77, 77, 77);
+banner-text = rgb(98, 98, 98);
+banner-dark = rgb(30,30,30);
+banner-border-top = rgb(158, 158, 158);
+banner-border = rgb(132, 132, 132);
+banner-border-bottom = rgb(110, 110, 110);
+banner-background = rgba(241, 241, 241, 0.95);
+banner-background-bottom = rgba(254, 254, 254, 0.95);
+banner-yes = rgb(105, 182, 75);
+banner-no = rgb(204, 99, 99);
+
+ss-notice
+	padding 10px
+	color banner-text
+	font 11px/15px "Lucida Grande","Lucida Sans",Verdana,Helvetica,Arial,sans-serif
+	overflow hidden
+	max-height 100px
+	width 250px
+	gradient banner-background banner-background-bottom
+	
+	border 1px solid banner-border
+	border-top-color banner-border-top
+	border-bottom-color banner-border-bottom
+	
+	margin-bottom 15px
+	border-radius 4px
+	background-clip padding-box
+	position relative
+	box-sizing border-box
+
+	&.hidden
+		max-height 0
+		padding 0
+		margin-bottom 0
+		border-width 0px
+
+	header
+		margin 0 60px 3px 0
+		color banner-dark
+		font-weight bold
+		font-size 13px
+
+	section content
+		margin 0 60px 0 0
+
+	section.noticeAction
+		position absolute
+		top 30%
+		right 10px
+		width 60px
+		text-align right
+
+		button 
+			border none
+			display inline-block
+			vertical-align middle
+			height 23px
+			width 23px
+			overflow hidden
+			padding 0
+			text-indent 100px
+			cursor pointer
+			margin 2px
+			transition all 200ms ease-out;
+			position relative
+
+			&.yes 
+				background banner-yes
+				border-radius 50%
+				background-clip padding-box
+				color banner-yes
+
+				&:hover 
+					background darken(banner-yes, 12%)	
+					color darken(banner-yes, 12%)				
+
+				&:before 
+					content ""
+					height 8px
+					width 3px
+					background-color #fff
+					display block
+					margin -2px 6px
+					rotateElem -45deg						
+
+				&:after 
+					content ""
+					height 14px
+					width 3px
+					background-color #fff
+					display block
+					margin -24px 12px
+					rotateElem 45deg
+
+			&.no 
+				background banner-no
+				color banner-no
+				border-radius 20%
+				background-clip padding-box
+
+				&:hover 
+					background darken(banner-no, 8%)
+					color darken(banner-no, 8%)
+				
+				&:before 
+					content ""
+					height 16px
+					width 3px
+					background-color #fff
+					display block
+					margin -8px 10px
+					rotateElem -45deg
+
+				&:after 
+					content ""
+					height 16px
+					width 3px
+					background-color #fff
+					display block
+					margin -21px 10px
+					rotateElem 45deg

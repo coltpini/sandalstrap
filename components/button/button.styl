@@ -2,6 +2,34 @@
 
 ss-button
 	button
-		border 1px solid #0f0
-		background #0f0
-		color #f00
+		background darkGrey
+		border none
+		border-radius 4px
+		color white
+		cursor pointer
+		padding 4px 8px 5px 8px
+		transition background-color 200ms ease-out
+
+		&:hover
+			background darken(darkGrey, 10%)
+
+		&:active
+			background darken(darkGrey, 15%)
+
+	button.submit
+		background green
+		
+		&:hover
+			background darken(green, 10%)
+
+		&:active
+			background darken(green, 15%)
+
+	button.cancel
+		background red
+		
+		&:hover
+			background darken(red, 10%)
+
+		&:active
+			background darken(red, 15%)

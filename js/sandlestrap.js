@@ -73,7 +73,6 @@ SandleStrap.prototype.ssInnerHTML = function(html){
 	//TODO: need to test to see if this exists, if not then send an error that the attribute doesn't exist.
 	var content = this.find('content');
 	if(typeof(content) === "object" && typeof(content.length) === "undefined"){
-		console.debug(content,html);
 		content.innerHTML = html;
 	}
 	else{
@@ -91,17 +90,20 @@ SandleStrap.prototype.inject = function(elem){
 		elem.ssInnerHTML = this.ssInnerHTML;
 		var temp = obj.config.template;
 		// Need to look for attributes, and insert them in the {{}}, (should I replace this with an element to make it easier? Probably.)
-		var matches = temp.match(/\{\{.*?\}\}/g);
-		console.debug(matches);
+		var matches = obj.config.attributes;
 		if(matches){
 			// TODO LATER: I might need to unescape the {{}} if this is being used with a framework like angular or handlebars.
 			var i = matches.length;
 			while(i--){
-				var attr = matches[i].replace(/\{/g, "").replace(/\}/g,""),
+				var attr = matches[i],
 					reg = new RegExp("{{" + attr + "}}");
+				if(attr === "type" && elem.getAttribute(attr)){
+					temp = obj.templates[elem.getAttribute(attr)];
+				}
+				//TODO: what about values in attributes?
+				//TODO: what about putting a <content> into an input, such as val on submit button?
 				temp = temp.replace(reg,'<span class="' + tagName + '-' + attr + '">' + elem.getAttribute(attr) + '</span>');
 			}
-			console.debug(temp);
 		}
 		elem.innerHTML = temp;
 		if(temp.indexOf('<content>') >= 0)

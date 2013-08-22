@@ -12,7 +12,33 @@ border-bottom-radius(rad = 4px)
 	-webkit-border-bottom-left-radius rad
 	border-bottom-left-radius rad
 
+border-radius(rad = 4px)
+	-webkit-border-radius rad
+	border-radius rad
+
 background-clip()
 	-moz-background-clip padding
 	-webkit-background-clip padding-box
 	background-clip padding-box
+
+gradient(color, color2)
+	background-color color
+	background-image -webkit-gradient(linear, left top, left bottom, from(color), to(color2))
+	background-image -webkit-linear-gradient(top, color, color2)
+	background-image -moz-linear-gradient(top, color, color2)
+	background-image -o-linear-gradient(top, color, color2)
+	background-image linear-gradient(to bottom, color, color2)
+
+
+transition(prop = all, duration = 300ms, ease = ease-out)
+	-webkit-transition prop duration ease
+	-moz-transition prop duration ease
+	-o-transition prop duration ease
+	transition prop duration ease
+
+rotateElem(deg)
+	-webkit-transform rotate(deg)
+	-moz-transform rotate(deg)
+	-ms-transform rotate(deg)
+	-o-transform rotate(deg)
+	transform rotate(deg)

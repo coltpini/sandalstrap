@@ -1,7 +1,13 @@
-var ssWindow = function(){};
-ssWindow.config = {
+var ssButton = function(){};
+ssButton.config = {
 	tag: "ss-button",
-	template:	"<button><content></content></button>"
+	template:	'<button><content></content></button>',
+	attributes: ["type"]
+};
+ssButton.templates = {
+	submit : '<button class="submit"><content></content></button>',
+	cancel : '<button class="cancel"><content></content></button>'
 };
 
-sandlestrap.register(ssWindow);
+
+sandlestrap.register(ssButton);
