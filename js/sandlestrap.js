@@ -92,7 +92,8 @@ SandleStrap.prototype.inject = function(elem){
 		// Need to look for attributes, and insert them in the {{}}, (should I replace this with an element to make it easier? Probably.)
 		var matches = obj.config.attributes;
 		if(matches){
-			// TODO LATER: I might need to unescape the {{}} if this is being used with a framework like angular or handlebars.
+			// TODO LATER: I might need to unescape the {{}} if this is being used with a framework like angular or handlebars. 
+			// This shouldn't be a problem because you need to register your attributes.
 			var i = matches.length;
 			while(i--){
 				var attr = matches[i],
@@ -108,6 +109,9 @@ SandleStrap.prototype.inject = function(elem){
 		elem.innerHTML = temp;
 		if(temp.indexOf('<content>') >= 0)
 			elem.ssInnerHTML(html);
+		
+		if(obj.config.init)
+			obj.config.init(elem);
 	}
 	
 

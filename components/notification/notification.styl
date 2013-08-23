@@ -4,6 +4,14 @@ ss-notification
 	position fixed
 	right 0
 	top 0
-	width 250px
+	max-width 250px
 	padding 10px
-	//background rgba(135,194,23,0.3)
+
+	content
+		width 100%
+
+@media (max-width: 300px )
+	ss-notification
+		width 100%
+		max-width 100%
+		box-sizing border-box
