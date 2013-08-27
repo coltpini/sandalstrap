@@ -93,7 +93,7 @@ SandleStrap.prototype.inject = function(elem){
 		var matches = obj.config.attributes;
 		if(matches){
 			// TODO LATER: I might need to unescape the {{}} if this is being used with a framework like angular or handlebars. 
-			// This shouldn't be a problem because you need to register your attributes.
+			// This shouldn't be a problem because you need to register your attributes. But I want to keep this in here for a note.
 			var i = matches.length;
 			while(i--){
 				var attr = matches[i],
@@ -112,6 +112,17 @@ SandleStrap.prototype.inject = function(elem){
 		
 		if(obj.config.init)
 			obj.config.init(elem);
+
+		var onrender = elem.getAttribute("onrender");
+		if(onrender){
+			if(typeof(onrender) === "string"){
+				var onR = function(){eval(onrender); console.log(this)};
+				fw.proxy(onR,elem)();//Make sure this use of eval is ok.
+			}
+			else if (typeof(onrender) === "function"){
+				fw.proxy(onrender,elem)();
+			}
+		}
 	}
 	
 
@@ -119,7 +130,8 @@ SandleStrap.prototype.inject = function(elem){
 
 var sandlestrap = new SandleStrap();
 
-//Here we are going to listen for insertion via animation listeners. This way we can inject right away without waiting for document.ready.
+// Here we are going to listen for insertion via animation listeners. This way we can inject right away without waiting for document.ready.
+// Substitution for mutation events.
 document.addEventListener("animationstart", fw.proxy(sandlestrap.inserted, sandlestrap), false); // standard + firefox
 document.addEventListener("MSAnimationStart", fw.proxy(sandlestrap.inserted, sandlestrap), false); // IE10
 document.addEventListener("webkitAnimationStart", fw.proxy(sandlestrap.inserted, sandlestrap), false); // Chrome + Safari

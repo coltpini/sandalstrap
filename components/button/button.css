@@ -1,3 +1,4 @@
+ss-button{display:inline-block;}
 ss-button button{background:#a3a3a3;border:none;-webkit-border-radius:4px;border-radius:4px;color:#fff;cursor:pointer;padding:4px 8px 5px 8px;-webkit-transition:background-color 200ms ease-out;-moz-transition:background-color 200ms ease-out;-o-transition:background-color 200ms ease-out;transition:background-color 200ms ease-out;}
 ss-button button:hover{background:#939393}
 ss-button button:active{background:#8b8b8b}

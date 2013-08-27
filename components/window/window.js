@@ -4,7 +4,7 @@ ssWindow.config = {
 	template:	"<header>{{heading}}</header>" +
 				"<section>" +
 					"<content></content>" +
-					"<ss-button>Templated Button</ss-button>" +
+					//"<ss-button>Templated Button</ss-button>" +
 				"</section>",
 	attributes: ["heading"]
 };

@@ -1,0 +1,91 @@
+@import "../../styles/sandlestrapFW";
+
+@font-face 
+	font-family 'chIconsRegular'
+	src url('dependencies/fonts/chicons-regular-webfont.eot')
+	src unquote("url('dependencies/fonts/chicons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('dependencies/fonts/chicons-regular-webfont.woff') format('woff'),
+		 url('dependencies/fonts/chicons-regular-webfont.ttf') format('truetype'),
+		 url('dependencies/fonts/chicons-regular-webfont.svg#chIconsRegular') format('svg');")
+	font-weight normal
+	font-style normal
+
+ss-icon
+	display inline-block
+	height 0
+	width 0
+
+ss-icon.rendered
+	position relative
+	height 7em
+	width 6em
+	padding 0.2em
+	display inline-block
+	cursor pointer
+	margin 6px
+
+	.icLayer 
+		position absolute
+		font-family 'chIconsRegular'
+		font-size 10em
+		color #666
+		transition color 300ms ease-out
+
+	.ic1 
+		color: #999;
+	
+	&:hover .icLayer
+	&.active .icLayer
+		color #369
+
+	&:hover .icLayer.ic1 
+	&:hover .icLayer.ic3
+	&.active .icLayer.ic1
+	&.active .icLayer.ic3   
+		color #69f
+	
+	.ic3 
+		color #999
+	
+	&[type="print"] .ic2
+	&[type="print"] .ic4 
+		color #fff
+
+	&[type="print"] .ic5
+		z-index 2000
+
+	&[type="print"] .ic7 
+		color #fff
+
+	&[type="print"]:hover  .icLayer.ic1
+	&[type="print"]:hover .icLayer.ic3
+	&[type="print"].active  .icLayer.ic1
+	&[type="print"].active .icLayer.ic3 
+		color #69f
+
+	&[type="print"]:hover .icLayer.ic2
+	&[type="print"]:hover .icLayer.ic4	
+	&[type="print"].active .icLayer.ic2 
+	&[type="print"].active .icLayer.ic4
+		color #fff
+	
+	&[type="print"]:hover .icLayer.ic7 
+	&[type="print"].active .icLayer.ic7
+		color #fff
+
+	&[type="print"]:hover .icLayer.ic8 
+	&[type="print"].active .icLayer.ic8
+		color #0c0
+
+	&[type="print"] .icLayer.ic5
+	&[type="print"] .icLayer.ic3
+	&[type="print"] .icLayer.ic4
+		margin 0
+		opacity 0
+
+	&[type="print"].active .icLayer.ic5
+	&[type="print"].active .icLayer.ic3
+	&[type="print"].active .icLayer.ic4
+		transition all 1s ease-out
+		margin 1ex 0 0 0
+		opacity 0.8

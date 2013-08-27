@@ -18,6 +18,8 @@
 		<script type="text/javascript" src="components/notice/notice.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/notice/notice.css">
 
+		<script type="text/javascript" src="components/icon/icon.js"></script>
+		<link rel="stylesheet" type="text/css" href="components/icon/icon.css">
 
 	</head>
 	<body>
@@ -31,6 +33,32 @@
 			<!-- <ss-notice heading="Some Notice">This is to notify you of something</ss-notice>
 			<ss-notice type="confirm" heading="Some Confirm">This is to have you confirm something</ss-notice>
 			<ss-notice type="prompt" heading="Some Prompt">This is to prompt you for a value of something</ss-notice> -->
+			<!-- <ss-button onrender="buttonHandler()">Notify Alert</ss-button>
+			<ss-button>Notify Confirm</ss-button>
+			<ss-button>Notify Prompt</ss-button> -->
 		</ss-notification>
+		<br />
+		<ss-icon type="print"></ss-icon>
+		<ss-icon type="fit"></ss-icon>
+		<ss-icon type="fitWidth"></ss-icon>
+		<ss-icon type="fitHeight"></ss-icon>
+		<ss-icon type="actualSize"></ss-icon>
+		<ss-icon type="download"></ss-icon>
+		<script>
+
+		// var but = fw('ss-button');
+		// but.innerHTML = "billy";
+		// but.onrender = function(){console.debug(this);};
+		// fw('ss-notification').appendChild(but);
+
+
+		function buttonHandler(){
+			console.debug(this);
+			// var notifyHandler = function(e){
+			// 	fw('ss-notification').notify.alert('some title', 'some message',function(val){console.log(val);});
+			// }
+			// this.addListener('click',notifyHandler);
+		}
+		</script>
 	</body>
 </html>

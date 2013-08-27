@@ -77,19 +77,25 @@ module.exports = function(grunt){
         },
         getFilePath = function(path){
           return path.substring(0,path.lastIndexOf("/")+1);
+        },
+        getParentFolder = function(path){
+          path = getFilePath(path).substring(0,path.lastIndexOf('/'));
+          return path.substring(path.lastIndexOf("/")+1);          
         };
 
     files.forEach(function(s){
-      var tf = "", fn = getFileName(s), path = getFilePath(s);
-      if(s.match(/\.js$/gi) && !s.match(/-min\.js$/gi)){
-        tf = path + fn + "-min.js";
-        config.uglify.app.files[tf] = [s];
-        config.watch.livereload.files.push(tf);
-      }
-      else if(s.match(/\.styl/gi)){
-        tf = path + fn + ".css";
-        config.stylus.compile.files[tf] = [s];
-        config.watch.livereload.files.push(tf);
+      var tf = "", fn = getFileName(s), path = getFilePath(s), pf = getParentFolder(s), reg = new RegExp(pf + "\.(js|styl)");
+      if(reg.test(s)){
+        if(s.match(/\.js$/gi)){
+          tf = path + fn + "-min.js";
+          config.uglify.app.files[tf] = [s];
+          config.watch.livereload.files.push(tf);
+        }
+        else if(s.match(/\.styl/gi)){
+          tf = path + fn + ".css";
+          config.stylus.compile.files[tf] = [s];
+          config.watch.livereload.files.push(tf);
+        }
       }
     });
 

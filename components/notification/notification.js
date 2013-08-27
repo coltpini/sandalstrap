@@ -3,7 +3,6 @@ ssNotification.config = {
 	tag: "ss-notification",
 	template:	"<content></content>",
 	init: function(elem){
-		console.debug('Notification Init');
 		elem.notify = new Notify(elem);
 	}
 };
@@ -12,7 +11,7 @@ sandlestrap.register(ssNotification);
 
 //This is the script to use the notifications
 var Notify = function(cont){
-	this.container = cont.find('content');
+	this.container = cont.find('[content]')[0];
 };
 
 Notify.prototype.showMessage = function(bannerTitle, bannerMessage, bannerType) {
