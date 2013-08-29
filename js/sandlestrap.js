@@ -45,11 +45,9 @@ SandleStrap.prototype.updateStyle = function(){
 	style.appendChild(document.createTextNode(loadingSelector + globalStyle));
 };
 
-SandleStrap.prototype.inserted = function inserted(e){
+SandleStrap.prototype.inserted = function(e){
 	if (e.animationName == "nodeInserted") {
 		var elem = e.target;
-
-		//I need to inject the stuffs into the element;
 		this.inject(elem);
 		e.target.addClass('rendered');
 
@@ -57,20 +55,21 @@ SandleStrap.prototype.inserted = function inserted(e){
 };
 
 SandleStrap.prototype.ssChangeAttribute = function(attr,val){
-	//TODO: need to test to see if this exists, if not then send an error that the attribute doesn't exist.
 	var selector = '.' + this.tagName.toLowerCase() + '-' + attr;
 	if(typeof(this.find(selector)) !== "undefined"){
 		this.setAttribute(attr,val);
 		var tagElem = this.find(selector);
 		tagElem.innerHTML = val;
 	}
+	// else if() {
+		//TODO: if I want to be able to change injected attributes on the fly.
+	// }
 	else{
 		console.error('There is no bound attribute "' + attr + '" for this element.');
 	}
 };
 
 SandleStrap.prototype.ssInnerHTML = function(html){
-	//TODO: need to test to see if this exists, if not then send an error that the attribute doesn't exist.
 	var content = this.find('content');
 	if(typeof(content) === "object" && typeof(content.length) === "undefined"){
 		content.innerHTML = html;
@@ -81,51 +80,65 @@ SandleStrap.prototype.ssInnerHTML = function(html){
 };
 
 SandleStrap.prototype.inject = function(elem){
-	//TODO: what about sub components? Will this handle that, I actually think it might!
 	if(!elem.containsClass('rendered')){
 		var tagName = elem.tagName.toLowerCase(),
 			obj = this.elements[tagName],
-			html = elem.innerHTML;
+			children = [],
+			i;
+	
+		for (i = 0; i < elem.childNodes.length; i++) {
+			children.push(elem.childNodes[i]);
+		}
 		elem.ssChangeAttribute = this.ssChangeAttribute;
 		elem.ssInnerHTML = this.ssInnerHTML;
 		var temp = obj.config.template;
-		// Need to look for attributes, and insert them in the {{}}, (should I replace this with an element to make it easier? Probably.)
 		var matches = obj.config.attributes;
 		if(matches){
+			i = matches.length;
+			while(i--){
+				if(matches[i] === 'type'){
+					temp = obj.templates[elem.getAttribute(matches[i])] || temp;
+				}
+			}
+			matches.push('content');
 			// TODO LATER: I might need to unescape the {{}} if this is being used with a framework like angular or handlebars. 
-			// This shouldn't be a problem because you need to register your attributes. But I want to keep this in here for a note.
-			var i = matches.length;
+			// This shouldn't be a problem because you need to register your attributes. But I want to keep this in here for a note to b sure to test it.
+			i = matches.length;
 			while(i--){
 				var attr = matches[i],
-					reg = new RegExp("{{" + attr + "}}");
-				if(attr === "type" && elem.getAttribute(attr)){
-					temp = obj.templates[elem.getAttribute(attr)];
+					reg = new RegExp("{{" + attr + "}}", 'g'),
+					attrReg = new RegExp('="{{' + attr + '}}"', 'g');
+				if(attrReg.test(temp) && elem.getAttribute(attr)){
+					temp = temp.replace(attrReg,'="' + elem.getAttribute(attr) + '"');
 				}
-				//TODO: what about values in attributes?
-				//TODO: what about putting a <content> into an input, such as val on submit button?
-				temp = temp.replace(reg,'<span class="' + tagName + '-' + attr + '">' + elem.getAttribute(attr) + '</span>');
+				else {
+					temp = temp.replace(reg,'<span class="' + tagName + '-' + attr + '">' + elem.getAttribute(attr) + '</span>');
+				}
 			}
 		}
 		elem.innerHTML = temp;
-		if(temp.indexOf('<content>') >= 0)
-			elem.ssInnerHTML(html);
+		if(temp.indexOf('<content>') !== -1){
+			//elem.ssInnerHTML(html);
+			var cont = elem.find('[content]')[0];
+			for (i = 0; i < children.length; i++) {
+				cont.appendChild(children[i]);
+			}
+		}
 		
 		if(obj.config.init)
 			obj.config.init(elem);
 
-		var onrender = elem.getAttribute("onrender");
-		if(onrender){
-			if(typeof(onrender) === "string"){
-				var onR = function(){eval(onrender); console.log(this)};
-				fw.proxy(onR,elem)();//Make sure this use of eval is ok.
-			}
-			else if (typeof(onrender) === "function"){
-				fw.proxy(onrender,elem)();
-			}
-		}
+		// var onrender = elem.getAttribute("onrender");
+		// if(onrender){
+		//	if(typeof(onrender) === "string"){
+		//		var onR = function(){eval(onrender); console.log(this);};
+		//		fw.proxy(onR,elem)();//Make sure this use of eval is ok.
+		//	}
+		//	else if (typeof(onrender) === "function"){
+		//		fw.proxy(onrender,elem)();
+		//	}
+		// }
 	}
-	
-
 };
 
 var sandlestrap = new SandleStrap();
@@ -138,5 +151,3 @@ document.addEventListener("webkitAnimationStart", fw.proxy(sandlestrap.inserted,
 
 //set up the content element
 document.createElement('content');
-
-//sandlestrap.register(ssContent);

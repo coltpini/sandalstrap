@@ -1,0 +1,32 @@
+@import "../../styles/sandlestrapFW";
+
+ss-modal
+	height 100%
+	width 100%
+	position fixed
+	top 0
+	left 0
+	background rgba(0,0,0,0.5);
+	text-align center
+	z-index layer5 + 1
+
+	&:before
+		content ""
+		display inline-block
+		height 50%
+
+	ss-window
+		max-width 500px
+		min-width 200px
+		vertical-align middle
+		display inline-block
+		text-align left
+
+		content
+			width 100%
+			
+		.modalAction
+			text-align right
+			margin 10px 0 0 0 
+
+

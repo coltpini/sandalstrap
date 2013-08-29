@@ -32,7 +32,17 @@ ssNotice.templates = {
 ssNotice.config = {
 	tag: "ss-notice",
 	template:	ssNotice.templates.alert,
-	attributes: ["heading", "type"]
+	attributes: ["heading", "type"],
+	init: function(elem){
+		if(elem.getAttribute('type') === 'prompt'){
+			elem.find('input').addListener('keyup', function(e){
+				if(fw.key(e).code === 13){
+					fw.stopCancel(e);
+					elem.find('.noticeAction button.yes').simulateEvent('click');
+				}
+			});
+		}
+	}
 };
 
 sandlestrap.register(ssNotice);

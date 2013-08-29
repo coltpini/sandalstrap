@@ -6,20 +6,23 @@
 		<script type="text/javascript" src="dependencies/fw-min.js"></script>
 		<script type="text/javascript" src="js/sandlestrap.js"></script>	
 
-		<script type="text/javascript" src="components/window/window.js"></script>
+		<script type="text/javascript" src="components/window/window-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/window/window.css">
 
-		<script type="text/javascript" src="components/button/button.js"></script>
+		<script type="text/javascript" src="components/button/button-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/button/button.css">
 
 		<script type="text/javascript" src="components/notification/notification.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/notification/notification.css">
 
-		<script type="text/javascript" src="components/notice/notice.js"></script>
+		<script type="text/javascript" src="components/notice/notice-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/notice/notice.css">
 
-		<script type="text/javascript" src="components/icon/icon.js"></script>
+		<script type="text/javascript" src="components/icon/icon-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/icon/icon.css">
+
+		<script type="text/javascript" src="components/modal/modal-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="components/modal/modal.css">
 
 	</head>
 	<body>
@@ -28,14 +31,20 @@
 			<p>This is a really cool thing</p>
 			<ss-button type="cancel">Embeded Button</ss-button>
 		</ss-window>
-		<ss-button type="submit">Some Button this is.</ss-button>
+		<ss-button onclick="embededButtonHandler(this)" type="submit">Some Button this is.</ss-button>
+		<div class="notify">
+			<ss-button data-notify="alert">Notify Alert</ss-button>
+			<ss-button data-notify="alertTimeout">Notify Alert with timeout</ss-button>
+			<ss-button data-notify="confirm">Notify Confirm</ss-button>
+			<ss-button data-notify="prompt">Notify Prompt</ss-button>
+		</div>
+		<div class="modal">
+			<ss-button data-modal="alert">Modal Alert</ss-button>
+			<ss-button data-modal="confirm">Modal Confirm</ss-button>
+			<ss-button data-modal="prompt">Modal Prompt</ss-button>
+		</div>
 		<ss-notification>
-			<!-- <ss-notice heading="Some Notice">This is to notify you of something</ss-notice>
-			<ss-notice type="confirm" heading="Some Confirm">This is to have you confirm something</ss-notice>
-			<ss-notice type="prompt" heading="Some Prompt">This is to prompt you for a value of something</ss-notice> -->
-			<!-- <ss-button onrender="buttonHandler()">Notify Alert</ss-button>
-			<ss-button>Notify Confirm</ss-button>
-			<ss-button>Notify Prompt</ss-button> -->
+			
 		</ss-notification>
 		<br />
 		<ss-icon type="print"></ss-icon>
@@ -44,21 +53,97 @@
 		<ss-icon type="fitHeight"></ss-icon>
 		<ss-icon type="actualSize"></ss-icon>
 		<ss-icon type="download"></ss-icon>
+		
 		<script>
 
-		// var but = fw('ss-button');
-		// but.innerHTML = "billy";
-		// but.onrender = function(){console.debug(this);};
-		// fw('ss-notification').appendChild(but);
+			var buttons = fw('[.notify ss-button]');
+			buttons.forEach(function(elem){
+				elem.addListener('click',notifyHandler);
+			});
+			
 
+			function embededButtonHandler(elem){
+				console.debug(elem,"from the embeded onclick");				
+			}
 
-		function buttonHandler(){
-			console.debug(this);
-			// var notifyHandler = function(e){
-			// 	fw('ss-notification').notify.alert('some title', 'some message',function(val){console.log(val);});
-			// }
-			// this.addListener('click',notifyHandler);
-		}
+			function notifyHandler(e){
+				var type = this.getAttribute('data-notify');
+				switch(type){
+					case 'alert':
+						fw('ss-notification').notify.alert(
+							'some ' + type + ' title', 
+							'some message',
+							false,
+							function(val){
+								console.log('the value returned from your notification is: ' + val);
+							}
+						);
+						break;
+					case 'prompt':
+						fw('ss-notification').notify.prompt(
+							'some ' + type + ' title', 
+							'What is the average flying velocity of an unlaidened swallow?',
+							'velocity?',
+							function(val){
+								if(typeof(val) === "string" && val.toLowerCase() === 'african or european?'){
+									console.log("well, I don't know tha ... ahhhhhhhhhhhhhhhhhh");
+								} 
+								else {
+									console.log('the value returned from your notification is: ' + val);
+								}
+							}
+						);
+						break;
+					case 'confirm':
+						fw('ss-notification').notify.confirm('some ' + type + ' title', 'some message',function(val){console.log('the value returned from your notification is: ' + val);});
+						break;
+					default:
+						fw('ss-notification').notify.alert('some ' + type + ' title', 'some message',3000,function(val){console.log('the value returned from your notification is: ' + val);});
+						break;
+				}
+				
+			}
+
+			var buttons = fw('[.modal ss-button]');
+			buttons.forEach(function(elem){
+				elem.addListener('click',modalHandler);
+			});
+			function modalHandler(e){
+				var type = this.getAttribute('data-modal');
+				switch(type){
+					case 'prompt':
+						fw('ss-notification').modal.prompt(
+							'some ' + type + ' title', 
+							'What is the average flying velocity of an unlaidened swallow?',
+							'velocity?',
+							function(val){
+
+								if(typeof(val) === "string" && val.toLowerCase() === 'african or european?'){
+									console.log("well, I don't know tha ... ahhhhhhhhhhhhhhhhhh");
+								} 
+								else {
+									console.log('the value returned from your notification is: ' + val);
+								}
+							}
+						);
+						break;
+					case 'confirm':
+						fw('ss-notification').modal.confirm('some ' + type + ' title', 'some message',function(val){console.log('the value returned from your notification is: ' + val);});
+						break;
+					default:
+						fw('ss-notification').modal.alert(
+							'some ' + type + ' title', 
+							'some message',
+							false,
+							function(val){
+								console.log('the value returned from your notification is: ' + val);
+							}
+						);
+						break;
+						break;
+				}
+				
+			}
 		</script>
 	</body>
 </html>

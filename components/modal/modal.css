@@ -5,7 +5,8 @@ ol,ul{list-style:none}
 blockquote,q{quotes:none}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
 table{border-collapse:collapse;border-spacing:0}
-ss-notification{position:fixed;right:0;top:0;max-width:250px;padding:10px;z-index:420;}
-ss-notification > content{width:100%}
-@media (max-width: 300px ){ss-notification{width:100%;max-width:100%;box-sizing:border-box}
-}
+ss-modal{height:100%;width:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);text-align:center;z-index:421;}
+ss-modal:before{content:"";display:inline-block;height:50%}
+ss-modal ss-window{max-width:500px;min-width:200px;vertical-align:middle;display:inline-block;text-align:left;}
+ss-modal ss-window content{width:100%}
+ss-modal ss-window .modalAction{text-align:right;margin:10px 0 0 0}
