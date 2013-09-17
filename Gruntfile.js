@@ -11,7 +11,8 @@ module.exports = function(grunt){
     stylus: {
       compile: {
         files : {
-          'styles/sandlestrap.css' : ['styles/sandlestrap.styl' ]
+          'styles/sandlestrap.css' : ['styles/sandlestrap.styl' ],
+          'index.css' : ['styles/index.styl']
         }
       }
     },

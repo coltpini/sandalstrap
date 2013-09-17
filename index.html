@@ -24,48 +24,105 @@
 		<script type="text/javascript" src="components/modal/modal-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/modal/modal.css">
 
+		<script type="text/javascript" src="components/menu/menu-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="components/menu/menu.css">
+
+		<script type="text/javascript" src="components/tippet/tippet-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="components/tippet/tippet.css">
+
+		<link rel="stylesheet" type="text/css" href="index.css">
+
 	</head>
 	<body>
-		<ss-window heading="Some Really Cool window thingy">
-			This is the really cool window thingy. This would be the core of all the window thingys. You can put all sorts of <em>tags in here</em> because it is a tag in and of itself.
-			<p>This is a really cool thing</p>
-			<ss-button type="cancel">Embeded Button</ss-button>
-		</ss-window>
-		<ss-button onclick="embededButtonHandler(this)" type="submit">Some Button this is.</ss-button>
-		<div class="notify">
-			<ss-button data-notify="alert">Notify Alert</ss-button>
-			<ss-button data-notify="alertTimeout">Notify Alert with timeout</ss-button>
-			<ss-button data-notify="confirm">Notify Confirm</ss-button>
-			<ss-button data-notify="prompt">Notify Prompt</ss-button>
-		</div>
-		<div class="modal">
-			<ss-button data-modal="alert">Modal Alert</ss-button>
-			<ss-button data-modal="confirm">Modal Confirm</ss-button>
-			<ss-button data-modal="prompt">Modal Prompt</ss-button>
-		</div>
-		<ss-notification>
-			
-		</ss-notification>
-		<br />
-		<ss-icon type="print"></ss-icon>
-		<ss-icon type="fit"></ss-icon>
-		<ss-icon type="fitWidth"></ss-icon>
-		<ss-icon type="fitHeight"></ss-icon>
-		<ss-icon type="actualSize"></ss-icon>
-		<ss-icon type="download"></ss-icon>
-		
+		<content>
+			<header>
+				<ss-menu direction="left" scheme="dark">
+					<ul>
+						<li><a href="#buttons">Buttons</a></li>
+						<li><a href="#notifications">Notifications</a></li>
+						<li><a href="#icons">Icons</a></li>						
+					</ul>
+				</ss-menu>
+				<h1>SandleStrap toolbox</h1>
+			</header>
+			<article>
+				<p>
+					What is sandlestrap? I don't really know. But the Idea is that we can use some of the coolness of webcomponents, right now.
+				</p>
+				<p>
+					but that isn't the end of the story. As webcomponents become mainstream, sandlestrap will morph into something that will use them. That includes tapping into libraries such as polymer, possibly.
+				</p>
+
+				<!-- <ss-window heading="Some Really Cool window thingy">
+					This is the really cool window thingy. This would be the core of all the window thingys. You can put all sorts of <em>tags in here</em> because it is a tag in and of itself.
+					<p>This is a really cool thing</p>
+					<ss-button type="cancel">Embeded Button</ss-button>
+				</ss-window> -->
+				<section>
+					<h2>Buttons</h2>
+					<ss-button type="submit">Action button</ss-button>
+					<ss-button type="cancel">destructive button</ss-button>
+					<ss-button>Default button</ss-button>
+				</section>
+				<section>
+					<h2>Notifications</h2>
+					<h3>Notice</h3>
+					<div class="notify">
+						<ss-button data-notify="alert">Notify Alert</ss-button>
+						<ss-button data-notify="alertTimeout">Notify Alert with timeout</ss-button>
+						<ss-button data-notify="confirm">Notify Confirm</ss-button>
+						<ss-button data-notify="prompt">Notify Prompt</ss-button>
+					</div>
+					<h3>Modal</h3>
+					<div class="modal">
+						<ss-button data-modal="alert">Modal Alert</ss-button>
+						<ss-button data-modal="confirm">Modal Confirm</ss-button>
+						<ss-button data-modal="prompt">Modal Prompt</ss-button>
+					</div>
+					<ss-notification></ss-notification>
+				</section>
+				<section>
+					<h2>Icons</h2>
+					<ss-icon type="print"></ss-icon>
+					<ss-icon type="fit"></ss-icon>
+					<ss-icon type="fitWidth"></ss-icon>
+					<ss-icon type="fitHeight"></ss-icon>
+					<ss-icon type="actualSize"></ss-icon>
+					<ss-icon type="download"></ss-icon>
+					<ss-icon type="menu"></ss-icon>
+				</section>
+				<section>
+					<h2>Tippet</h2>
+					<ss-button type="submit" class="tippetButton">click me!</ss-button>
+				</section>				
+			</article>
+		</content>
 		<script>
 
 			var buttons = fw('[.notify ss-button]');
 			buttons.forEach(function(elem){
 				elem.addListener('click',notifyHandler);
 			});
+
+			var tb = fw('.tippetButton'),
+				tippet = new Tippet(tb,{
+					heading: 'Tippet Greeting',
+					content: 'Hello from Tippet <ss-button type="cancel">cancel</ss-button>',
+					//area : 'before',
+					//position : 'left',
+					onShow : function(){
+						var t = this;
+						console.log(this);
+						t.find('content ss-button').addListener('click',function(e){
+							t.tippet.hide();
+							fw.stopCancel(e);
+						});
+					}
+				});
+			tb.addListener('click',function(e){
+				tippet.show();
+			});
 			
-
-			function embededButtonHandler(elem){
-				console.debug(elem,"from the embeded onclick");				
-			}
-
 			function notifyHandler(e){
 				var type = this.getAttribute('data-notify');
 				switch(type){

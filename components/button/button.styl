@@ -1,7 +1,7 @@
 @import "../../styles/sandlestrapFW";
 
 ss-button	
-	display inline-block
+	display inline
 	
 	button
 		background darkGrey
@@ -9,14 +9,25 @@ ss-button
 		border-radius 4px
 		color white
 		cursor pointer
-		padding 4px 8px 5px 8px
+		display inline
 		transition background-color 200ms ease-out
+		padding 4px 8px 5px 8px
+
+		// Really mozilla this was the problem?!?
+		&::-moz-focus-inner
+			border 0
+			padding 0
+			margin 0
 
 		&:hover
 			background darken(darkGrey, 10%)
 
 		&:active
 			background darken(darkGrey, 15%)
+
+		&:focus
+			outline 0
+			box-shadow 0 0 2px 1px highlight
 
 	button.submit
 		background green

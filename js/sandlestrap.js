@@ -5,6 +5,7 @@ var SandleStrap = function(){
 SandleStrap.prototype.register = function(obj){
 	// for IE
 	document.createElement(obj.config.tag);
+
 	this.elementTypes.push(obj.config.tag);
 	this.elements[obj.config.tag] = obj;
 	this.updateStyle();
@@ -25,7 +26,7 @@ SandleStrap.prototype.updateStyle = function(){
 							"-webkit-animation-name: nodeInserted;" +
 						'}',
 		hideStyle = "{opacity: 0}",
-		globalStyle = "{display:block}",
+		globalStyle = "{display:block; -moz-box-sizing: border-box; box-sizing: border-box;}",
 		loadingSelector = "";
 
 	if(typeof(style) === "undefined"){
@@ -112,7 +113,8 @@ SandleStrap.prototype.inject = function(elem){
 					temp = temp.replace(attrReg,'="' + elem.getAttribute(attr) + '"');
 				}
 				else {
-					temp = temp.replace(reg,'<span class="' + tagName + '-' + attr + '">' + elem.getAttribute(attr) + '</span>');
+					var replacement = elem.getAttribute(attr) || "";
+					temp = temp.replace(reg,'<span class="' + tagName + '-' + attr + '">' + replacement + '</span>');
 				}
 			}
 		}

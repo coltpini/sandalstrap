@@ -1,0 +1,143 @@
+@import "../../styles/sandlestrapFW";
+
+tippet-border = primary
+tippet-background = white
+tippet-title-color = tan
+arrowSize = 8px
+
+ss-tippet
+	max-width 400px
+	min-width 200px
+
+	&.wide
+		max-width 700px
+		min-width 500px
+
+ss-tippet
+	text-shadow none
+	text-align left
+	position absolute
+	z-index 201
+	background-color tippet-background
+	font 12px/14px 'Helvetica Neue', helvetica, sans-serif
+	//border 1px solid tippet-border
+	border-radius 4px
+	box-shadow 0 0 4px rgba(black, 0.5)
+
+	content
+		display block
+
+	heading
+		padding 4px 6px
+		margin 0 0 2px 0
+		color tippet-title-color
+		background tippet-border
+		border-top-radius 4px
+		display block
+		box-sizing border-box
+
+		.close
+			position absolute
+			top 3px
+			right 6px
+			cursor pointer
+			color tippet-title-color
+
+	> content
+		padding 5px
+		margin 0 4px
+		max-height 400px
+		overflow auto
+
+	.tippetArrow
+		position absolute
+		border arrowSize solid transparent
+		height arrowSize * 2
+		width arrowSize * 2
+
+//vars here for arrow position
+frontSize = (arrowSize * -2)
+fromCorner = (arrowSize / 2) + 3
+awayFromObj = arrowSize + fromCorner
+
+ss-tippet
+	&.top
+		bottom 100%
+		left 100%
+		margin-bottom awayFromObj
+		margin-left frontSize - 4
+		&.before
+			right 100%
+			left auto
+			margin-bottom awayFromObj
+			margin-right frontSize
+		.tippetArrow
+			bottom frontSize
+			left fromCorner
+			border-top-color tippet-border
+
+	&.right
+		top 100%
+		left 100%
+		margin-top awayFromObj
+		margin-left awayFromObj
+		&.before
+			margin-right awayFromObj
+			margin-bottom frontSize
+			bottom 100%
+			top auto
+		.tippetArrow
+			left frontSize
+			top fromCorner
+			border-right-color tippet-border
+
+	&.bottom
+		top 100%
+		left 100%
+		margin-top awayFromObj
+		margin-left frontSize - 4
+		&.before
+			right 100%
+			left auto
+			margin-top awayFromObj
+			margin-right frontSize
+		.tippetArrow
+			top frontSize
+			left fromCorner
+			border-bottom-color tippet-border
+
+	&.left
+		top 100%
+		right 100%
+		margin-top frontSize - 4
+		margin-right awayFromObj
+		&.before
+			margin-left awayFromObj
+			margin-bottom frontSize
+			bottom 100%
+			top auto
+		.tippetArrow
+			right frontSize
+			top fromCorner
+			border-left-color tippet-border
+
+	&.middle
+		&.right, &.left
+			.tippetArrow
+				margin auto	0
+				top 1px
+				bottom 1px
+		&.top, &.bottom
+			.tippetArrow
+				margin 0 auto
+				left 1px
+				right 1px
+	&.before
+		&.right, &.left
+			.tippetArrow
+				bottom fromCorner
+				top auto
+		&.top, &.bottom
+			.tippetArrow
+				right fromCorner
+				left auto

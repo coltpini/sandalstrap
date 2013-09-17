@@ -10,6 +10,4 @@ ssButton.config = {
 	attributes: ["type"]
 };
 
-
-
 sandlestrap.register(ssButton);

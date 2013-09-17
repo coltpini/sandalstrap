@@ -14,68 +14,87 @@ ss-icon
 	display inline-block
 	height 0
 	width 0
+	margin 0.1em
 
 ss-icon.rendered
-	position relative
-	height 7em
-	width 6em
-	padding 0.2em
+	height 0.6em
+	width 0.6em
+	position relative	
 	display inline-block
 	cursor pointer
-	margin 6px
+	font-size 24px
 
 	.icLayer 
 		position absolute
-		font-family 'chIconsRegular'
-		font-size 10em
-		color #666
+		font-family 'chIconsRegular'		
+		color darkGrey
 		transition color 300ms ease-out
+		line-height 0.6em
 
 	.ic1 
-		color: #999;
+		color darken(darkGrey,20%)
+
+	&[scheme="dark"]
+		.icLayer
+			color primary
+
+		&:hover .icLayer
+		&.active .icLayer
+			darken(primary, 30%)
 	
 	&:hover .icLayer
 	&.active .icLayer
-		color #369
+		color primary
 
 	&:hover .icLayer.ic1 
 	&:hover .icLayer.ic3
 	&.active .icLayer.ic1
 	&.active .icLayer.ic3   
-		color #69f
+		color darken(primary,30%)
 	
+	&[type="print"] .ic0
+	&[type="print"] .ic6
+		color darken(darkGrey,20%)
+
+	&[type="print"] .ic1
+		color darkGrey
+
+
 	.ic3 
-		color #999
+		color darken(darkGrey,20%)
 	
 	&[type="print"] .ic2
 	&[type="print"] .ic4 
-		color #fff
-
-	&[type="print"] .ic5
-		z-index 2000
+		color white
 
 	&[type="print"] .ic7 
-		color #fff
+		color white
 
 	&[type="print"]:hover  .icLayer.ic1
 	&[type="print"]:hover .icLayer.ic3
 	&[type="print"].active  .icLayer.ic1
 	&[type="print"].active .icLayer.ic3 
-		color #69f
+		color primary
 
 	&[type="print"]:hover .icLayer.ic2
 	&[type="print"]:hover .icLayer.ic4	
 	&[type="print"].active .icLayer.ic2 
 	&[type="print"].active .icLayer.ic4
-		color #fff
+		color white
 	
 	&[type="print"]:hover .icLayer.ic7 
 	&[type="print"].active .icLayer.ic7
-		color #fff
+		color white
 
 	&[type="print"]:hover .icLayer.ic8 
 	&[type="print"].active .icLayer.ic8
-		color #0c0
+		color green
+
+	&[type="print"]:hover .icLayer.ic0
+	&[type="print"].active .icLayer.ic0
+	&[type="print"]:hover .icLayer.ic6
+	&[type="print"].active .icLayer.ic6
+		color darken(primary,30%)
 
 	&[type="print"] .icLayer.ic5
 	&[type="print"] .icLayer.ic3

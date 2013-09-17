@@ -1,0 +1,17 @@
+html{height:100%}
+body > content{height:100%}
+body{-webkit-transition:left 300ms ease-out;-moz-transition:left 300ms ease-out;-o-transition:left 300ms ease-out;transition:left 300ms ease-out;position:relative;left:0;}
+body.right{-webkit-transition:right 300ms ease-out;-moz-transition:right 300ms ease-out;-o-transition:right 300ms ease-out;transition:right 300ms ease-out;}
+body.right ss-menu nav{left:auto;right:0}
+body.right ss-menu .menuCover{-webkit-transition:right 300ms ease-out;-moz-transition:right 300ms ease-out;-o-transition:right 300ms ease-out;transition:right 300ms ease-out}
+body.menuOpen{overflow:hidden;left:30%;}
+body.menuOpen.right{right:30%;left:auto}
+body.menuOpen .menuCover{left:30%}
+ss-menu .navButton{display:inline-block;cursor:pointer;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+ss-menu .navButton ss-icon{font-size:40px;margin:0}
+ss-menu .menuCover{-webkit-transition:left 300ms ease-out;-moz-transition:left 300ms ease-out;-o-transition:left 300ms ease-out;transition:left 300ms ease-out;background:#fafaf0;height:100%;width:100%;position:fixed;top:0;left:0;z-index:-1}
+ss-menu nav{width:30%;position:fixed;height:100%;top:0;left:0;background:#3f5666;color:#fafaf0;z-index:-1;}
+ss-menu nav content{display:block;}
+ss-menu nav content > ul > li{border-bottom:1px solid #324552;cursor:pointer;}
+ss-menu nav content > ul > li:hover{background:#3a4f5e}
+ss-menu nav content > ul > li a{padding:10px;display:inline-block;height:100%;width:100%;color:#fafaf0;text-decoration:none}

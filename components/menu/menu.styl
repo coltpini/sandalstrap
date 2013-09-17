@@ -1,0 +1,87 @@
+@import "../../styles/sandlestrapFW";
+
+html
+	height 100%
+
+body > content	
+	height 100%
+
+body
+	transition left 300ms ease-out	
+	position relative
+	left 0
+
+	&.right
+		transition right 300ms ease-out
+
+		ss-menu
+			nav 
+				left auto
+				right 0
+
+			.menuCover
+				transition right 300ms ease-out
+
+
+body.menuOpen
+	overflow hidden
+	left 30%
+	
+	&.right
+		right 30%
+		left auto
+
+	.menuCover
+		left 30%
+		
+ss-menu
+	.navButton 		
+		display inline-block
+		cursor pointer
+		box-sizing border-box
+		noSelect none
+		
+		ss-icon
+			font-size 40px
+			margin 0
+
+	.menuCover
+		transition left 300ms ease-out
+		background bg
+		height 100%
+		width 100%
+		position fixed
+		top 0
+		left 0
+		z-index -1	
+				
+
+	nav
+		width 30%
+		position fixed
+		height 100%
+		top 0
+		left 0
+		background primary
+		color tan
+		z-index -1
+
+		content 
+			display block
+
+			> ul > li
+				border-bottom 1px solid darken(primary, 20%)
+				cursor pointer
+
+				&:hover
+					background darken(primary, 8%)
+
+				a
+					padding 10px
+					display inline-block
+					height 100%
+					width 100%
+					color tan
+					text-decoration none
+
+

@@ -1,0 +1,24 @@
+ss-tippet{max-width:400px;min-width:200px;}
+ss-tippet.wide{max-width:700px;min-width:500px}
+ss-tippet{text-shadow:none;text-align:left;position:absolute;z-index:201;background-color:#fff;font:12px/14px 'Helvetica Neue',helvetica,sans-serif;-webkit-border-radius:4px;border-radius:4px;box-shadow:0 0 4px rgba(51,51,51,0.5);}
+ss-tippet content{display:block}
+ss-tippet heading{padding:4px 6px;margin:0 0 2px 0;color:#fafaf0;background:#3f5666;-webkit-border-top-right-radius:4px;border-top-right-radius:4px;-webkit-border-top-left-radius:4px;border-top-left-radius:4px;display:block;-moz-box-sizing:border-box;box-sizing:border-box;}
+ss-tippet heading .close{position:absolute;top:3px;right:6px;cursor:pointer;color:#fafaf0}
+ss-tippet > content{padding:5px;margin:0 4px;max-height:400px;overflow:auto}
+ss-tippet .tippetArrow{position:absolute;border:8px solid transparent;height:16px;width:16px}
+ss-tippet.top{bottom:100%;left:100%;margin-bottom:15px;margin-left:-20px;}
+ss-tippet.top.before{right:100%;left:auto;margin-bottom:15px;margin-right:-16px}
+ss-tippet.top .tippetArrow{bottom:-16px;left:7px;border-top-color:#3f5666}
+ss-tippet.right{top:100%;left:100%;margin-top:15px;margin-left:15px;}
+ss-tippet.right.before{margin-right:15px;margin-bottom:-16px;bottom:100%;top:auto}
+ss-tippet.right .tippetArrow{left:-16px;top:7px;border-right-color:#3f5666}
+ss-tippet.bottom{top:100%;left:100%;margin-top:15px;margin-left:-20px;}
+ss-tippet.bottom.before{right:100%;left:auto;margin-top:15px;margin-right:-16px}
+ss-tippet.bottom .tippetArrow{top:-16px;left:7px;border-bottom-color:#3f5666}
+ss-tippet.left{top:100%;right:100%;margin-top:-20px;margin-right:15px;}
+ss-tippet.left.before{margin-left:15px;margin-bottom:-16px;bottom:100%;top:auto}
+ss-tippet.left .tippetArrow{right:-16px;top:7px;border-left-color:#3f5666}
+ss-tippet.middle.right .tippetArrow,ss-tippet.middle.left .tippetArrow{margin:auto 0;top:1px;bottom:1px}
+ss-tippet.middle.top .tippetArrow,ss-tippet.middle.bottom .tippetArrow{margin:0 auto;left:1px;right:1px}
+ss-tippet.before.right .tippetArrow,ss-tippet.before.left .tippetArrow{bottom:7px;top:auto}
+ss-tippet.before.top .tippetArrow,ss-tippet.before.bottom .tippetArrow{right:7px;left:auto}

@@ -1,24 +1,20 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
-body{line-height:1}
-ol,ul{list-style:none}
-blockquote,q{quotes:none}
-blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
-table{border-collapse:collapse;border-spacing:0}
 @font-face{font-family:'chIconsRegular';src:url("dependencies/fonts/chicons-regular-webfont.eot");src:url('dependencies/fonts/chicons-regular-webfont.eot?#iefix') format('embedded-opentype'),url('dependencies/fonts/chicons-regular-webfont.woff') format('woff'),url('dependencies/fonts/chicons-regular-webfont.ttf') format('truetype'),url('dependencies/fonts/chicons-regular-webfont.svg#chIconsRegular') format('svg');;font-weight:normal;font-style:normal}
-ss-icon{display:inline-block;height:0;width:0}
-ss-icon.rendered{position:relative;height:7em;width:6em;padding:.2em;display:inline-block;cursor:pointer;margin:6px;}
-ss-icon.rendered .icLayer{position:absolute;font-family:'chIconsRegular';font-size:10em;color:#666;-webkit-transition:color 300ms ease-out;-moz-transition:color 300ms ease-out;-o-transition:color 300ms ease-out;transition:color 300ms ease-out}
-ss-icon.rendered .ic1{color:#999}
-ss-icon.rendered:hover .icLayer,ss-icon.rendered.active .icLayer{color:#369}
-ss-icon.rendered:hover .icLayer.ic1,ss-icon.rendered:hover .icLayer.ic3,ss-icon.rendered.active .icLayer.ic1,ss-icon.rendered.active .icLayer.ic3{color:#69f}
-ss-icon.rendered .ic3{color:#999}
+ss-icon{display:inline-block;height:0;width:0;margin:.1em}
+ss-icon.rendered{height:.6em;width:.6em;position:relative;display:inline-block;cursor:pointer;font-size:24px;}
+ss-icon.rendered .icLayer{position:absolute;font-family:'chIconsRegular';color:#8e8e8e;-webkit-transition:color 300ms ease-out;-moz-transition:color 300ms ease-out;-o-transition:color 300ms ease-out;transition:color 300ms ease-out;line-height:.6em}
+ss-icon.rendered .ic1{color:#727272}
+ss-icon.rendered[scheme="dark"] .icLayer{color:#3f5666}
+ss-icon.rendered:hover .icLayer,ss-icon.rendered.active .icLayer{color:#3f5666}
+ss-icon.rendered:hover .icLayer.ic1,ss-icon.rendered:hover .icLayer.ic3,ss-icon.rendered.active .icLayer.ic1,ss-icon.rendered.active .icLayer.ic3{color:#2c3c47}
+ss-icon.rendered[type="print"] .ic0,ss-icon.rendered[type="print"] .ic6{color:#727272}
+ss-icon.rendered[type="print"] .ic1{color:#8e8e8e}
+ss-icon.rendered .ic3{color:#727272}
 ss-icon.rendered[type="print"] .ic2,ss-icon.rendered[type="print"] .ic4{color:#fff}
-ss-icon.rendered[type="print"] .ic5{z-index:2000}
 ss-icon.rendered[type="print"] .ic7{color:#fff}
-ss-icon.rendered[type="print"]:hover .icLayer.ic1,ss-icon.rendered[type="print"]:hover .icLayer.ic3,ss-icon.rendered[type="print"].active  .icLayer.ic1,ss-icon.rendered[type="print"].active .icLayer.ic3{color:#69f}
+ss-icon.rendered[type="print"]:hover .icLayer.ic1,ss-icon.rendered[type="print"]:hover .icLayer.ic3,ss-icon.rendered[type="print"].active  .icLayer.ic1,ss-icon.rendered[type="print"].active .icLayer.ic3{color:#3f5666}
 ss-icon.rendered[type="print"]:hover .icLayer.ic2,ss-icon.rendered[type="print"]:hover .icLayer.ic4,ss-icon.rendered[type="print"].active .icLayer.ic2,ss-icon.rendered[type="print"].active .icLayer.ic4{color:#fff}
 ss-icon.rendered[type="print"]:hover .icLayer.ic7,ss-icon.rendered[type="print"].active .icLayer.ic7{color:#fff}
-ss-icon.rendered[type="print"]:hover .icLayer.ic8,ss-icon.rendered[type="print"].active .icLayer.ic8{color:#0c0}
+ss-icon.rendered[type="print"]:hover .icLayer.ic8,ss-icon.rendered[type="print"].active .icLayer.ic8{color:#6db850}
+ss-icon.rendered[type="print"]:hover .icLayer.ic0,ss-icon.rendered[type="print"].active .icLayer.ic0,ss-icon.rendered[type="print"]:hover .icLayer.ic6,ss-icon.rendered[type="print"].active .icLayer.ic6{color:#2c3c47}
 ss-icon.rendered[type="print"] .icLayer.ic5,ss-icon.rendered[type="print"] .icLayer.ic3,ss-icon.rendered[type="print"] .icLayer.ic4{margin:0;opacity:0}
 ss-icon.rendered[type="print"].active .icLayer.ic5,ss-icon.rendered[type="print"].active .icLayer.ic3,ss-icon.rendered[type="print"].active .icLayer.ic4{-webkit-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;transition:all 1s ease-out;margin:1ex 0 0 0;opacity:.8}
