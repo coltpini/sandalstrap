@@ -147,10 +147,9 @@ var insertedProxy = fw.proxy(sandlestrap.inserted, sandlestrap),
 	animationListenerSupport = false;
 
 while(i--){
-	if(fw.isEventSupported(listener[i]) || (listener[i] === "MSAnimationStart" && /*HACK HACK until I can get the isEventSupported to work with animationStart in IE */ navigator.appVersion.indexOf('MSIE 10') > -1)){
+	if(fw.isEventSupported(listener[i])){
 		document.addEventListener(listener[i], insertedProxy, false);
 		animationListenerSupport = true;
-		console.log("This should be seen in IE10");
 	}
 }
 //This should only be used if the animation event doesn't work.
