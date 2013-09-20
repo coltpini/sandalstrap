@@ -45,13 +45,16 @@ SandleStrap.prototype.updateStyle = function(){
 	style.appendChild(document.createTextNode(loadingSelector + hideStyle));
 	style.appendChild(document.createTextNode(loadingSelector + globalStyle));
 };
-
+var ieStinks = false;
 SandleStrap.prototype.inserted = function(e){
+	if(!ieStinks){
+		console.log('IE STINKS!!');
+		ieStinks = true;
+	}
 	if (e.animationName == "nodeInserted") {
 		var elem = e.target;
 		this.inject(elem);
 		e.target.addClass('rendered');
-
 	}
 };
 
@@ -85,61 +88,51 @@ SandleStrap.prototype.inject = function(elem){
 		var tagName = elem.tagName.toLowerCase(),
 			obj = this.elements[tagName],
 			children = [],
-			i;
-	
-		for (i = 0; i < elem.childNodes.length; i++) {
-			children.push(elem.childNodes[i]);
-		}
+			i,
+			tempElem = fw('<div>');
 		elem.ssChangeAttribute = this.ssChangeAttribute;
 		elem.ssInnerHTML = this.ssInnerHTML;
-		var temp = obj.config.template;
+		var template = obj.config.template;
 		var matches = obj.config.attributes;
 		if(matches){
 			i = matches.length;
 			while(i--){
 				if(matches[i] === 'type'){
-					temp = obj.templates[elem.getAttribute(matches[i])] || temp;
+					template = obj.templates[elem.getAttribute(matches[i])] || template;
 				}
 			}
 			matches.push('content');
 			// TODO LATER: I might need to unescape the {{}} if this is being used with a framework like angular or handlebars. 
-			// This shouldn't be a problem because you need to register your attributes. But I want to keep this in here for a note to b sure to test it.
+			// This shouldn't be a problem because you need to register your attributes. But I want to keep this in here for a note to be sure to test it.
 			i = matches.length;
 			while(i--){
 				var attr = matches[i],
 					reg = new RegExp("{{" + attr + "}}", 'g'),
 					attrReg = new RegExp('="{{' + attr + '}}"', 'g');
-				if(attrReg.test(temp) && elem.getAttribute(attr)){
-					temp = temp.replace(attrReg,'="' + elem.getAttribute(attr) + '"');
+				if(attrReg.test(template) && elem.getAttribute(attr)){
+					template = template.replace(attrReg,'="' + elem.getAttribute(attr) + '"');
 				}
 				else {
 					var replacement = elem.getAttribute(attr) || "";
-					temp = temp.replace(reg,'<span class="' + tagName + '-' + attr + '">' + replacement + '</span>');
+					template = template.replace(reg,'<span class="' + tagName + '-' + attr + '">' + replacement + '</span>');
 				}
 			}
 		}
-		elem.innerHTML = temp;
-		if(temp.indexOf('<content>') !== -1){
-			//elem.ssInnerHTML(html);
+
+		while(elem.childNodes.length > 0){
+			var cn = elem.childNodes[0];
+			tempElem.appendChild(cn);
+			children.push(cn);
+		}
+		elem.innerHTML = template;
+		if(template.indexOf('<content>') !== -1){
 			var cont = elem.find('[content]')[0];
 			for (i = 0; i < children.length; i++) {
 				cont.appendChild(children[i]);
 			}
 		}
-		
 		if(obj.config.init)
 			obj.config.init(elem);
-
-		// var onrender = elem.getAttribute("onrender");
-		// if(onrender){
-		//	if(typeof(onrender) === "string"){
-		//		var onR = function(){eval(onrender); console.log(this);};
-		//		fw.proxy(onR,elem)();//Make sure this use of eval is ok.
-		//	}
-		//	else if (typeof(onrender) === "function"){
-		//		fw.proxy(onrender,elem)();
-		//	}
-		// }
 	}
 };
 
@@ -147,9 +140,32 @@ var sandlestrap = new SandleStrap();
 
 // Here we are going to listen for insertion via animation listeners. This way we can inject right away without waiting for document.ready.
 // Substitution for mutation events.
-document.addEventListener("animationstart", fw.proxy(sandlestrap.inserted, sandlestrap), false); // standard + firefox
-document.addEventListener("MSAnimationStart", fw.proxy(sandlestrap.inserted, sandlestrap), false); // IE10
-document.addEventListener("webkitAnimationStart", fw.proxy(sandlestrap.inserted, sandlestrap), false); // Chrome + Safari
+
+var didAnimationStart = false,
+	listener = ["animationstart","MSAnimationStart","oanimationstart","webkitAnimationStart"],
+	i = listener.length;
+while(i--){
+	//var elem = fw('<div>');
+	//if("on" + listener[i] in elem){
+		document.addEventListener(listener[i], fw.proxy(sandlestrap.inserted, sandlestrap), false);
+		//didAnimationStart = true;
+	//	break;
+	//}
+	//else {
+
+	//}
+}
+//console.log(i);
+
+
+// var el = document.createElement(TAGNAMES[eventName] || 'div');
+// eventName = 'on' + eventName;
+// var isSupported = (eventName in el);
+// if (!isSupported) {
+// el.setAttribute(eventName, 'return;');
+// isSupported = typeof el[eventName] == 'function';
+// }
+// el = null;
 
 //set up the content element
 document.createElement('content');
