@@ -147,7 +147,7 @@ var insertedProxy = fw.proxy(sandlestrap.inserted, sandlestrap),
 	animationListenerSupport = false;
 
 while(i--){
-	if(fw.isEventSupported(listener[i])){
+	if(fw.checkEventSupport(listener[i])){
 		document.addEventListener(listener[i], insertedProxy, false);
 		animationListenerSupport = true;
 	}
