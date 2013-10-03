@@ -48,10 +48,13 @@ SandleStrap.prototype.updateStyle = function(){
 };
 var ieStinks = false;
 SandleStrap.prototype.inserted = function(e,elem){
+	var fromEvent = false;
 	if (e) {
 		elem = e.target;
+		fromEvent = true;
 	}
-	this.inject(elem);
+	if(!fromEvent || e.animationName === "nodeInserted")
+		this.inject(elem);
 };
 
 SandleStrap.prototype.ssChangeAttribute = function(attr,val){
