@@ -1,4 +1,4 @@
-ss-modal{height:100%;width:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);text-align:center;z-index:421;}
+ss-modal{height:100%;width:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);text-align:center;z-index:421;-webkit-transition:opacity 200ms ease-in-out;-moz-transition:opacity 200ms ease-in-out;-o-transition:opacity 200ms ease-in-out;transition:opacity 200ms ease-in-out;}
 ss-modal:before{content:"";display:inline-block;height:50%}
 ss-modal ss-window{max-width:500px;min-width:200px;vertical-align:middle;display:inline-block;text-align:left;}
 ss-modal ss-window content{width:100%}
