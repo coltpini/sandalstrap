@@ -119,13 +119,8 @@ Modal.prototype.showModal = function(modalTitle, modalMessage, modalType) {
 	modal.setAttribute('type',modalType);
 	modal.innerHTML = modalMessage;
 	this.container.appendChild(modal);
-
 	this.hideModal(modal);
-
-	var trans = fw.styleProp('transition');
-	if(trans.is)
-		modal.style[trans.prop] = "opacity 200ms ease-out";
-
+	
 	var _t = this;
 	setTimeout(function(){_t.unhideModal(modal);},1);
 

@@ -1,8 +1,15 @@
 @import "reset";
 @import "sandlestrapFW";
 
-@keyframes nodeInserted {  
-	50% {opacity: 0.99}  
+@keyframes nodeInserted {
+	from { clip: rect(1px, auto, auto, auto); }
+	to { clip: rect(0px, auto, auto, auto); } 
+}
+
+@-ms-keyframes nodeInserted { 
+	// this is causing colisions in chrome when a transition on opacity is inserted
+	// but the clip property isn't working in IE, so we put this here.
+	50% {opacity: 1} 
 }
 
 .rendered 
