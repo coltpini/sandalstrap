@@ -46,7 +46,6 @@ SandleStrap.prototype.updateStyle = function(){
 	style.appendChild(document.createTextNode(loadingSelector + globalStyle));
 	this.loadingSelector = loadingSelector;
 };
-var ieStinks = false;
 SandleStrap.prototype.inserted = function(e,elem){
 	var fromEvent = false;
 	if (e) {
@@ -145,7 +144,7 @@ var sandlestrap = new SandleStrap();
 // Substitution for mutation events.
 
 var insertedProxy = fw.proxy(sandlestrap.inserted, sandlestrap),
-	listener = ["animationstart","MSAnimationStart","oanimationstart","webkitAnimationStart"],
+	listener = ["animationstart","mozanimationstart","MSAnimationStart","oanimationstart","webkitAnimationStart"],
 	i = listener.length,
 	animationListenerSupport = false;
 
