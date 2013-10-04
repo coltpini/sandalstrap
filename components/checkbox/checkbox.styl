@@ -1,0 +1,35 @@
+@import "../../styles/sandlestrapFW";
+
+ss-checkbox	
+	display inline-block
+	cursor pointer
+	margin-right 8px
+	noSelect none
+		
+	input
+		display none	
+	
+	span
+		display inline-block
+		height 14px
+		width 14px
+		background green
+		margin 0 3px
+		vertical-align bottom
+		border-radius 4px		
+	
+	&.checked
+		span
+			background primary
+			
+			&:before
+				content ""
+				display inline-block
+				border-left 2px solid white
+				border-bottom 2px solid white
+				border-radius 2px
+				height 3px 
+				width 6px
+				rotateElem -45deg
+				margin-left 3px
+				margin-bottom 2px
