@@ -33,6 +33,9 @@
 		<script type="text/javascript" src="components/checkbox/checkbox-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/checkbox/checkbox.css">
 
+		<script type="text/javascript" src="components/annotate/annotate-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="components/annotate/annotate.css">
+
 		<link rel="stylesheet" type="text/css" href="index.css">
 		
 	</head>
@@ -97,12 +100,20 @@
 				<section>
 					<h2>Tippet</h2>
 					<ss-button type="submit" class="tippetButton">click me!</ss-button>
-				</section>
+                </section>
 				<section>
 					<h2>Checkbox</h2>
 					<ss-checkbox value="true" name="billy">Is this Billy</ss-checkbox>
 					<ss-checkbox name="sam">You are sam</ss-checkbox>
-				</section>				
+				</section>		
+				<section>
+				    <h2 annotation="billy the bob">Annotation</h2>
+				    <div annotation="a test annotation hooked to a div <br />yep here is a formatted one.">here are some test elements</div>
+				    <span annotation="a test annotation hooked to a span">and another</span>
+				    <ss-button annotation="this is a button man">an another</ss-button>
+				    <ss-window annotation="some window, this is static, just a test subject" heading="some window for testing">Here is another one to <em annotation="some note should go here about this thingy">annotate</em></ss-window></ss-window>
+				    <ss-annotate></ss-annotate>
+				</section>
 			</article>
 		</content>
 		<script>
