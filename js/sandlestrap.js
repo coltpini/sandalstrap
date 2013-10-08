@@ -1,6 +1,7 @@
 var SandleStrap = function(){
 	this.elementTypes = [];
 	this.elements = {};
+    this.insertionHandlers = [];
 };
 SandleStrap.prototype.register = function(obj){
 	// for IE
@@ -134,8 +135,18 @@ SandleStrap.prototype.inject = function(elem){
 				obj.config.init(elem);
 
 			elem.addClass('rendered');
+            this.afterInserted(elem);
 		}
+        
+        
 	}
+};
+
+SandleStrap.prototype.afterInserted = function(elem){
+    var i = this.insertionHandlers.length;
+    while(i--){
+        this.insertionHandlers[i](elem);
+    }
 };
 
 var sandlestrap = new SandleStrap();
