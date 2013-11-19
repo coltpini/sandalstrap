@@ -35,6 +35,9 @@
 
 		<script type="text/javascript" src="components/annotate/annotate-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="components/annotate/annotate.css">
+		
+		<script type="text/javascript" src="components/collapseGroup/collapseGroup-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="components/collapseGroup/collapseGroup.css">
 
 		<link rel="stylesheet" type="text/css" href="index.css">
 		
@@ -115,6 +118,13 @@
 				    <ss-window annotation="some window, this is static, just a test subject" heading="some window for testing">Here is another one to <em annotation="some note should go here about this thingy">annotate</em></ss-window></ss-window>
 				    <ss-annotate></ss-annotate>
 				</section>
+                <section>
+                    <h2>Collapsible Groups</h2>
+                    <ss-collapsegroup heading="the amazing collapsible group!">
+                        some content that goes inside the group.
+                    </ss-collapsegroup>
+                </section>
+				<section class="emptySection"></section>
 			</article>
 		</content>
 		<script>

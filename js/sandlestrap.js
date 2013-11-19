@@ -108,9 +108,16 @@ SandleStrap.prototype.inject = function(elem){
 				while(i--){
 					var attr = matches[i],
 						reg = new RegExp("{{" + attr + "}}", 'g'),
-						attrReg = new RegExp('="{{' + attr + '}}"', 'g');
+						attrReg = new RegExp('="{{' + attr + '}}"', 'g'),
+						condAttr = new RegExp('{{' + attr + ' \|\| .*?}}','g');
 					if(attrReg.test(template) && elem.getAttribute(attr)){
 						template = template.replace(attrReg,'="' + elem.getAttribute(attr) + '"');
+					}
+					else if(condAttr.test(template) && elem.getAttribute(attr)){
+						console.log(template);
+						console.log('your here');
+						var r = template.match(condAttr);
+						console.log(r);
 					}
 					else {
 						var replacement = elem.getAttribute(attr) || "";
